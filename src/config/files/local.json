@@ -1,0 +1,12 @@
+{
+  "isProduction": "false",
+  "serviceName": "movie-mania-bff",
+  "NODE_ENV": "local",
+  "PORT": 3001,
+  "services": {
+    "tmdb": {
+      "url": "https://api.themoviedb.org/3",
+      "apiKey": "969feec624b465e460111470bd523b5f"
+    }
+  }
+}
