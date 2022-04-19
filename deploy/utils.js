@@ -36,7 +36,7 @@ const mergeDeep = (target, ...sources) => {
 exports.buildNConfEnvVars = (paramsPath, env) => {
   const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${paramsPath}.json`;
 
-  const configDir = './src/config/files';
+  const configDir = '../src/config/files';
   const configBaseName = `${env}.json`;
 
   return axios
