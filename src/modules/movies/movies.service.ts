@@ -1,6 +1,7 @@
 import { Inject } from '@nestjs/common';
 
 import { ApiService } from '@modules/api/api.service';
+import { GenresService } from '@modules/genres/genres.service';
 import { IApiQuery, IResponseList } from '@modules/api/api.interface';
 import { Movies } from './movies.model';
 import { MoviesAdapter } from './movies.adapters';
@@ -9,6 +10,8 @@ export class MoviesService {
   constructor(
     @Inject(ApiService)
     private readonly api: ApiService,
+    @Inject(GenresService)
+    private readonly genresService: GenresService,
     @Inject(MoviesAdapter)
     protected adapter: MoviesAdapter,
   ) {}
@@ -22,7 +25,9 @@ export class MoviesService {
         params: query,
       })) as IResponseList<Movies>;
 
-      return this.adapter.mountMoviesInfo(responseMovies);
+      const genres = await this.genresService.getMovieGenres(query);
+
+      return this.adapter.mountMoviesInfo(responseMovies, genres);
     } catch (error) {
       throw error;
     }
@@ -47,7 +52,7 @@ export class MoviesService {
         query,
       )) as IResponseList<Movies>;
 
-      return this.adapter.mountMoviesInfo(responseMovies);
+      return responseMovies;
     } catch (error) {
       throw error;
     }
@@ -60,7 +65,7 @@ export class MoviesService {
         query,
       )) as IResponseList<Movies>;
 
-      return this.adapter.mountMoviesInfo(responseMovies);
+      return responseMovies;
     } catch (error) {
       throw error;
     }
@@ -73,7 +78,7 @@ export class MoviesService {
         query,
       )) as IResponseList<Movies>;
 
-      return this.adapter.mountMoviesInfo(responseMovies);
+      return responseMovies;
     } catch (error) {
       throw error;
     }
@@ -86,7 +91,7 @@ export class MoviesService {
         query,
       )) as IResponseList<Movies>;
 
-      return this.adapter.mountMoviesInfo(responseMovies);
+      return responseMovies;
     } catch (error) {
       throw error;
     }

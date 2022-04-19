@@ -7,11 +7,6 @@ import { MoviesService } from './movies.service';
 export class MoviesController {
   constructor(private readonly service: MoviesService) {}
 
-  @Get(':id')
-  getMovieDetails(@Param('id') id: string, @Query() query: IApiQuery) {
-    return this.service.getMovieDetails(id, query);
-  }
-
   @Get('popular')
   getPopular(@Query() query: IApiQuery) {
     return this.service.getPopular(query);
@@ -30,5 +25,10 @@ export class MoviesController {
   @Get('upcoming')
   getUpcoming(@Query() query: IApiQuery) {
     return this.service.getUpcoming(query);
+  }
+
+  @Get(':id')
+  getMovieDetails(@Param('id') id: string, @Query() query: IApiQuery) {
+    return this.service.getMovieDetails(id, query);
   }
 }

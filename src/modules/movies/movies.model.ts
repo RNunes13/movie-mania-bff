@@ -1,7 +1,4 @@
-export interface IGenres {
-  id?: number;
-  name?: string;
-}
+import { Genres } from '@modules/genres/genres.model';
 
 export interface IProductionCompanies {
   id?: number;
@@ -25,7 +22,8 @@ export interface IMovies {
   backdrop_path?: string | null;
   belongs_to_collection?: null | object;
   budget?: number;
-  genres?: IGenres[];
+  genre_ids?: number[];
+  genres?: Genres[];
   homepage?: string | null;
   id?: number;
   imdb_id?: string | null;
@@ -53,7 +51,8 @@ export class Movies implements IMovies {
   backdrop_path?: string | null;
   belongs_to_collection?: null | object;
   budget?: number;
-  genres?: IGenres[];
+  genre_ids?: number[];
+  genres?: Genres[];
   homepage?: string | null;
   id?: number;
   imdb_id?: string | null;

@@ -7,6 +7,7 @@ import { GenresController } from './genres.controller';
 
 @Module({
   providers: [GenresService],
+  exports: [GenresService],
   controllers: [GenresController],
   imports: [ApiModule, AppConfigModule],
 })
