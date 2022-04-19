@@ -1,0 +1,1 @@
+bff: npm run start:prod
