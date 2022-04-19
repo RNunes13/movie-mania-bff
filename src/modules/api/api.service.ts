@@ -2,7 +2,7 @@ import { HttpException, Inject, Injectable } from '@nestjs/common';
 import axios, { AxiosInstance } from 'axios';
 
 import { AppConfigService } from '@modules/config/config.service';
-import { ApiOptions } from './api.interface';
+import { IApiOptions, IResponseList } from './api.interface';
 
 @Injectable()
 export class ApiService {
@@ -39,7 +39,19 @@ export class ApiService {
     }
   }
 
-  async get(path: string, options?: ApiOptions) {
+  async get(path: string, options?: IApiOptions): Promise<any> {
+    try {
+      const { data } = await this.instance.get(path, options);
+      return data;
+    } catch (error) {
+      throw this.handleException(error);
+    }
+  }
+
+  async getList(
+    path: string,
+    options?: IApiOptions,
+  ): Promise<IResponseList<any>> {
     try {
       const { data } = await this.instance.get(path, options);
       return data;
