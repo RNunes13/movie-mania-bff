@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { TerminusModule } from '@nestjs/terminus';
 import { AppConfigModule } from '@modules/config/config.module';
 import { ApiModule } from '@modules/api/api.module';
 
@@ -9,7 +8,7 @@ import { MoviesController } from './movies.controller';
 
 @Module({
   controllers: [MoviesController],
+  imports: [ApiModule, AppConfigModule],
   providers: [MoviesService, MoviesAdapter],
-  imports: [TerminusModule, ApiModule, AppConfigModule],
 })
 export class MoviesModule {}
